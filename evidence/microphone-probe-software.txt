@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: backgroundStatus=실험용 마이크 감지 · AEC 없음 · NS 없음 · 음성 분리 정확도 보장 안 됨
+INSTRUMENTATION_RESULT: microphoneStart=실험용 마이크 감지 · AEC 없음 · NS 없음 · 음성 분리 정확도 보장 안 됨
+INSTRUMENTATION_RESULT: microphoneStarted=true
+INSTRUMENTATION_RESULT: microphoneSurvivedBackground=true
+INSTRUMENTATION_RESULT: nonzeroAudioInputObserved=true
+INSTRUMENTATION_RESULT: stream=Microphone probe completed; started=true, explicit stop verified.
+
+INSTRUMENTATION_CODE: -1

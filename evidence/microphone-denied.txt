@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: stream=Microphone denial: 2 checks passed
+
+INSTRUMENTATION_CODE: -1

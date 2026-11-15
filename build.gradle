@@ -1,0 +1,7 @@
+plugins { id 'com.android.application' version '8.7.3' apply false }
+
+// Keep generated Android resources off removable exFAT volumes: macOS AppleDouble
+// metadata files otherwise appear as resources and break AGP's resource parser.
+def outputRoot = providers.gradleProperty('quietDrive.buildRoot').getOrElse(
+    new File(System.getProperty('user.home'), '.cache/quiet-drive/build').absolutePath)
+allprojects { layout.buildDirectory = file("${outputRoot}/${project.name}") }

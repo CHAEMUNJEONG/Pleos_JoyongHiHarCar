@@ -1,0 +1,6 @@
+INSTRUMENTATION_RESULT: actualAudioStatus=제조사 승인 차량 오디오 권한 없음
+INSTRUMENTATION_RESULT: checks=26
+INSTRUMENTATION_RESULT: gearStatus=에뮬레이터 기어 P
+INSTRUMENTATION_RESULT: stream=Quiet Drive device scenarios: 26 checks passed
+
+INSTRUMENTATION_CODE: -1

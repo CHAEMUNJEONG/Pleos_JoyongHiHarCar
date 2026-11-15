@@ -1,0 +1,88 @@
+Pleos Virtual Console heartbeat and gear bridge verification
+Checked: 2026-11-15 Asia/Seoul
+Device: emulator-5554 / Pleos Connect v2.1.0 / Android 14 API 34
+Client ID: quiet-drive-verification
+
+Precondition
+  adb -s emulator-5554 forward tcp:8088 tcp:8088
+  Base URL: http://127.0.0.1:8088
+
+1. Activate the browser-backed DDS bridge. The real console sends this POST
+   immediately and every 1 second. Its timeout is 3000 ms.
+
+  curl -X POST \
+    'http://127.0.0.1:8088/browser/session?client=quiet-drive-verification'
+
+  Repeated three times at one-second intervals. Each response:
+  HTTP 200
+  {"active":true,"clients":1,"timeout_ms":3000}
+
+2. State after heartbeat:
+
+  GET /vehicle/state -> HTTP 200
+  gear.bridge_ready=true
+  gear.actual.value=Park
+  gear.actual.source=activation
+  availability.available=true
+  availability.strict_success=true
+  availability.effective_success=true
+  availability.source=web-activation
+  availability.transport=dds
+  availability.direct_vhal_write=false
+
+3. Reverse request while heartbeat is active:
+
+  curl -X PUT \
+    'http://127.0.0.1:8088/vehicle/gear?gear=Reverse'
+
+  HTTP 200
+  gear.bridge_ready=true
+  gear.actual.value=Reverse
+  gear.actual.source=web
+  gear.actual.timestamp_ms=1794748914662
+
+  A following GET /vehicle/state also returned actual.value=Reverse.
+
+4. Restore Park before closing the session:
+
+  curl -X PUT \
+    'http://127.0.0.1:8088/vehicle/gear?gear=Park'
+
+  HTTP 200
+  gear.bridge_ready=true
+  gear.actual.value=Park
+  gear.actual.source=web
+  gear.actual.timestamp_ms=1794748915723
+
+  Final active-session state:
+  gear.actual.value=Park
+  controls.speed_kph=0
+  controls.accelerator_pct=0
+  controls.brake_pct=0
+  controls.dds_ready.all=true
+
+5. Close the bounded verification client:
+
+  curl -X POST \
+    'http://127.0.0.1:8088/browser/session?client=quiet-drive-verification&closing=1'
+
+  HTTP 200
+  {"active":false,"clients":0,"timeout_ms":3000}
+
+6. Four seconds after close:
+
+  gear.bridge_ready=false
+  gear.actual.value=Park
+  availability.source=web-deactivation
+  controls.speed_kph=0
+  controls.accelerator_pct=0
+  controls.brake_pct=0
+  controls.emulator_active=false
+
+Conclusion
+  The earlier HTTP 503 emulator_inactive response only showed that no browser
+  session heartbeat was active. With the console heartbeat running, the DDS
+  bridge becomes ready and accepts Reverse and Park with HTTP 200. Park was
+  restored and the verification session was closed. This proves the Virtual
+  Console-to-emulator gear bridge, but app callback delivery is a separate app
+  integration assertion.

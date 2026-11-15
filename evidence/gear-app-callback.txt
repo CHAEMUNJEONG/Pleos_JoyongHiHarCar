@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: parkSource=에뮬레이터 기어 P
+INSTRUMENTATION_RESULT: reverseSource=에뮬레이터 기어 R
+INSTRUMENTATION_RESULT: stream=AAOS emulator gear callback: 3 checks passed
+
+INSTRUMENTATION_CODE: -1

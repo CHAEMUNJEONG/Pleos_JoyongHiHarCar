@@ -1,0 +1,7 @@
+Release APK touch smoke: PASS
+- Capability dialog opens; actual audio permission limitation and emulator gear source shown.
+- Simulation requires explicit selection.
+- Park settings opens four sliders; default focus displays 70%.
+- Three feature switches accept touch.
+- Conversation and R inputs show both causes, target 7/40, driver focus visual.
+- Simulation notice remains visible; actual microphone off.

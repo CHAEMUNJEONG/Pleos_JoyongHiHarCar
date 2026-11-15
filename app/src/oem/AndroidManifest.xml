@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Build only after Hyundai approval. Declaring these does not grant access. -->
+    <uses-permission android:name="android.car.permission.CAR_CONTROL_AUDIO_VOLUME" />
+    <uses-permission android:name="android.car.permission.CAR_CONTROL_AUDIO_SETTINGS" />
+</manifest>

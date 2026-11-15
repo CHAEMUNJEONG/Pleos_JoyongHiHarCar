@@ -1,0 +1,32 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'ai.pleos.quietdrive'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'ai.pleos.quietdrive'
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName '0.1.0'
+        testInstrumentationRunner 'ai.pleos.quietdrive.SmokeInstrumentation'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    flavorDimensions 'access'
+    productFlavors {
+        publicApp { dimension 'access' }
+        oem { dimension 'access'; applicationIdSuffix '.oem' }
+    }
+    signingConfigs {
+        localRelease {
+            storeFile file('../.signing/quiet-drive.jks')
+            storePassword System.getenv('QUIET_DRIVE_KEY_PASSWORD') ?: 'quiet-drive-local'
+            keyAlias 'quiet-drive'
+            keyPassword System.getenv('QUIET_DRIVE_KEY_PASSWORD') ?: 'quiet-drive-local'
+        }
+    }
+    buildTypes {
+        release { signingConfig signingConfigs.localRelease; minifyEnabled false }
+    }
+    lint { abortOnError true; checkReleaseBuilds true }
+}
