@@ -269,7 +269,7 @@ public final class AutomationService extends Service {
             Intent stop = new Intent(this, AutomationService.class).setAction("STOP");
             PendingIntent stopIntent = PendingIntent.getService(this, 1, stop, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
             Notification notification = new Notification.Builder(this, "automation")
-                .setSmallIcon(R.drawable.ic_quiet_drive).setContentTitle(simulation ? "Quiet Drive · 화면 시연" : "Quiet Drive · 자동 조절")
+                .setSmallIcon(R.drawable.ic_quiet_drive).setContentTitle(getString(R.string.app_name) + (simulation ? " · 화면 시연" : " · 자동 조절"))
                 .setContentText(microphone ? "실험용 대화 감지 중 · 음성은 저장하지 않습니다" : "자동 조절 상태를 확인하려면 누르세요")
                 .setContentIntent(content).setOngoing(true).addAction(new Notification.Action.Builder(null, "모두 중지", stopIntent).build()).build();
             int type = Build.VERSION.SDK_INT >= 34 ? ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE : 0;

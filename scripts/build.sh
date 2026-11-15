@@ -15,6 +15,6 @@ fi
 ./scripts/test-policy.sh
 ./gradlew -PquietDrive.buildRoot="$build_root" :app:assemblePublicAppRelease :app:lintPublicAppRelease --console=plain
 mkdir -p apk
-cp "$build_root/app/outputs/apk/publicApp/release/app-publicApp-release.apk" apk/QuietDrive_release.apk
-(cd apk && shasum -a 256 QuietDrive_release.apk > SHA256SUMS)
-printf '%s\n' "Release APK: $project_dir/apk/QuietDrive_release.apk"
+cp "$build_root/app/outputs/apk/publicApp/release/app-publicApp-release.apk" apk/JoYongHiHarCar_release.apk
+(cd apk && shasum -a 256 JoYongHiHarCar_release.apk > SHA256SUMS)
+printf '%s\n' "Release APK: $project_dir/apk/JoYongHiHarCar_release.apk"

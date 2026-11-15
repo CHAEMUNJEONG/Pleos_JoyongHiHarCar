@@ -54,7 +54,7 @@ public final class MainActivity extends Activity {
         LinearLayout root = column(); root.setPadding(dp(30),dp(20),dp(30),dp(18)); scroll.addView(root);
         LinearLayout header = row(); header.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout brand = column();
-        TextView wordmark = text("Quiet Drive", 27, INK); wordmark.setTypeface(null, Typeface.BOLD); brand.addView(wordmark);
+        TextView wordmark = text(getString(R.string.app_name), 27, INK); wordmark.setTypeface(null, Typeface.BOLD); brand.addView(wordmark);
         TextView eyebrow = text("PLEOS  /  AUDIO COMPANION", 10, MUTED); eyebrow.setLetterSpacing(.16f); brand.addView(eyebrow);
         header.addView(brand, new LinearLayout.LayoutParams(0,-2,1));
         mode = text("차량 연동 확인", 12, MINT); mode.setPadding(dp(15),dp(10),dp(15),dp(10)); mode.setBackground(round(PANEL,20)); header.addView(mode);
